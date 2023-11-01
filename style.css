@@ -1,0 +1,43 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+html, body{
+    background-color: rgb(153, 207, 253);
+}
+header{
+    background-color: aliceblue;
+    min-height: 150px;
+    text-align: center;
+    padding-top: 40px;
+    
+    font-size: 1.2em;
+    color: darkblue;
+    max-width: 500px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin: auto;
+    padding-bottom: 50px;;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.315);
+}
+header > h1{
+    color: darkblue;
+    font-size: 3em;
+    font-weight: normal;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.267);
+}
+
+#tabela{
+    border: 1px solid black;
+}
+
+
+button{
+    font-size: large;
+    color: aliceblue;
+    background-color: darkblue;
+    border-radius: 10px;
+    padding: 5px;
+}
