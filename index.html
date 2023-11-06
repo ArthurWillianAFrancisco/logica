@@ -1,87 +1,78 @@
-<meta charset="UTF-8">
-<head><link rel="stylesheet" href="style.css">
-</head>
+<!DOCTYPE html>
+<meta charset='UTF-8'>
+<head><link rel='stylesheet' href='style.css'></head>
 
-<body>  
-<br>  
-<header id="tabela">
-<script>
-    mostra("Bem vindo ao jogo <br> <h1>Número Secreto<h1>")
+    <body>
+        <br>
+        <header id='tabela'> 
+        <h3>Bem vindo ao jogo</h3>
+        <br>
+        <h1>Número Secreto</h1>
+        <h3>Como funciona o jogo: Você só possui 10 tentativas para descobrio um número entre 1 e 100, Boa Sorte !!</h4> 
+        <p>Escolha um número</p>
+        <span id="avisa"></span>
+        <br>
+        <span id="dica"></span>
+        <br> 
+        <input/>
+        <button id="ini" style="display: block;">enviar</button>
+        <p id="anteriores"></p>
+        </header>
 
-    var rodada = 1;
-    
-    function pulaLinha() {
+        <script>
+            var numeroPensado = sorteia(100);
+            var tentativas = 0;
+            var rodada = 0;
 
-        document.write("<br>");
-    }
+            function JogarNovamente(){
+                
+                tentativas++;
 
-    function mostra(frase) {
+                var numero = document.querySelector("input")
+                var aviso = document.getElementById("avisa")
+                var dica = document.getElementById("dica")
+                var antes = document.getElementById("anteriores")
 
-        document.write("<header>"+frase+"</header>");
-        pulaLinha();
-    }
+                if(numero.value != numeroPensado){
+                    aviso.innerHTML = "Errou";
+                }
 
-    function sorteia(n) {
+                if(tentativas > 10){
+                    aviso.innerHTML = "Você perdeu,você passou de 10 tentativas"
+                    numeroPensado = sorteia(100);
+                    rodada++;
+                    antes.innerHTML = "rodada: " +rodada;
+                    tentativas = 0;
+                }
 
-        return Math.round(Math.random() * n);
-    }
+                if(numeroPensado > numero.value){
+                    dica.innerHTML = "Seu número é menor --";
+                }
 
+                if(numeroPensado < numero.value){
+                    dica.innerHTML = "Seu número é maior ++";
+                }
 
+                if(numero.value == numeroPensado){
+                    aviso.innerHTML = "Acertou";
+                    dica.innerHTML = "Você precisou de " + tentativas + " para acertar";
+                    numeroPensado = sorteia(100);
+                    rodada++;
+                    antes.innerHTML = "rodada: " +rodada;
+                    tentativas = 0;
+                }
 
-    function JogarNovamente(){
-    
-    const element = document.getElementById("novo-jogo");
-    element.remove();
+                numero.value = "";
+                numero.focus();
+            }
 
-    var numeroPensado = sorteia(100);
+            var inciar = document.getElementById("ini");
+            inciar.onclick = JogarNovamente;
 
-    alert("Como funciona o jogo: Você só possui 10 tentativas para descobrio um número entre 1 e 100, Boa Sorte !!")
-    var chute = parseInt(prompt("Já pensei. Qual número você acha que é?"));
-    var tentativas = 0;
-    
-    
-
-    while(chute != numeroPensado & tentativas < 10) {
-        if(chute > numeroPensado) {
-            alert("Você errou! Seu chute é maior que o número pensado!");
-        
-        } else {
-            alert("Você errou! Seu chute é menor que o número pensado!");
-        }
-        tentativas++;
-        var chute = parseInt(prompt("Qual número você acha que é?"));
-    }
-
-    tentativas++;
-
-    if(tentativas >= 10){
-        alert("Você exedou a suas tentativas")
-        document.write("<h1>Que pena você perdeu</h1>")
-        mostra("Essa foi a " + rodada + "ª rodada")
-        mostra("O último número que pensei foi " + numeroPensado)
-        mostra("Você ultilisou todas as suas 10 tentativas")
-        rodada++;
-    }
-
-
-
-    if(chute == numeroPensado & tentativas < 10){
-        alert("Uau! Você acertou, pois eu pensei no " + numeroPensado);
-        alert("Você precisou de " + tentativas + " tentativas para acertar")
-        document.write("<h1>Parabens você conseguiu</h1>")
-        mostra("Essa foi a " + rodada + "ª rodada")
-        mostra("O último número que pensei foi " + numeroPensado)
-        mostra("Você precisou de " + tentativas + " tentativas para acertar")
-        rodada++;
-    }
-    
-    mostra("_______________________________________________________________")
-    document.write("<button  id='novo-jogo' onclick= 'JogarNovamente()'>Clique aqui para jogar novamente </button>")
-    }
-    
-</script>
-<button id="novo-jogo" onclick= 'JogarNovamente()'>Clique aqui para iniciar o jogo</button>
-</header>
-<br> 
-</body>
-
+            function sorteia(n) {
+                return Math.round(Math.random() * n);
+            }
+ 
+        </script>
+    </body>
+</html>

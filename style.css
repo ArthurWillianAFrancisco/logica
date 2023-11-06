@@ -33,11 +33,18 @@ header > h1{
     border: 1px solid black;
 }
 
+p{
+    font-size: larger;
+}
 
+input{
+    margin-bottom: 10px;
+}
 button{
     font-size: large;
     color: aliceblue;
     background-color: darkblue;
     border-radius: 10px;
     padding: 5px;
+    margin: auto;
 }
